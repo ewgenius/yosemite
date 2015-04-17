@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=elementary-yo
+Comment=elementary desktop default theme
+Encoding=UTF-8
+
+Name[en_US]=elementary-yo
+
+[X-GNOME-Metatheme]
+GtkTheme=elementary-yo
+MetacityTheme=elementary-yo
+IconTheme=elementary
+CursorTheme=DMZ-Black
+ButtonLayout=close:maximize
