@@ -18,7 +18,7 @@
 
 <!-- :: GEOMETRIES :: -->
 
-<frame_geometry name="normal" rounded_top_left="0" rounded_top_right="0">
+<frame_geometry name="normal" rounded_top_left="4" rounded_top_right="4">
 	<distance name="left_width" value="1"/>
 	<distance name="right_width" value="1"/>
 	<distance name="bottom_height" value="1"/>
@@ -58,6 +58,17 @@
 	<border name="title_border" left="0" right="0" top="0" bottom="0" />
 </frame_geometry>
 
+
+
+
+
+<frame_geometry name="attached" title_scale="medium" hide_buttons="true" rounded_top_left="4" rounded_top_right="4" rounded_bottom_left="4" rounded_bottom_right="4" parent="normal">
+	<distance name="title_vertical_pad" value="9"/>
+	<distance name="bottom_height" value="4"/>
+	<distance name="left_width" value="4"/>
+	<distance name="right_width" value="4"/>
+</frame_geometry>
+
 <!-- ::: BORDER OUTLINE ::: -->
 
 <draw_ops name="border_focused">
@@ -67,6 +78,18 @@
 <draw_ops name="border_unfocused">
 	<rectangle color="C_border_focused" x="0" y="0" width="width-1" height="height-1" filled="false" />
 </draw_ops>
+
+<draw_ops name="border_attached_focused">
+	<rectangle color="C_border_focused" x="0" y="0" width="width-1" height="height-1" filled="false"
+/>
+	<arc color="C_border_focused" x="width-10" y="0" width="9" height="9"  start_angle="0" extent_angle="90" />
+	<!-- double arcs for darker borders -->
+	<arc color="C_border_focused" x="0" y="0" width="9" height="9"  start_angle="270" extent_angle="90" />
+	<arc color="C_border_focused" x="width-10" y="0" width="9" height="9"  start_angle="0" extent_angle="90" />
+
+</draw_ops>
+
+
 
 <draw_ops name="rounded_border">
 	<line color="C_border_focused" x1="4" y1="0" x2="width-5" y2="0" />
@@ -108,6 +131,8 @@
 		color="C_border_focused" />
 </draw_ops>
 
+
+
 <draw_ops name="border_left_unfocused">
 	<line
 		x1="0" y1="0"
@@ -130,12 +155,16 @@
 <!-- ::: TITLEBAR ::: -->
 
 <draw_ops name="entire_background_focused">
-	<rectangle color="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1" x="1" y="5" width="width-2" height="height-6" filled="true" />
+	<rectangle color="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1" x="1" y="5" width="width-2" height="height-6"
+
+ filled="true" />
+
 
 </draw_ops>
 
 <draw_ops name="entire_background_unfocused">
 	<rectangle color="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1" x="1" y="5" width="width-2" height="height-6" filled="true" />
+
 </draw_ops>
 
 <draw_ops name="dialog_background_focused">
@@ -147,6 +176,7 @@
 		<color value="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1"/>
 		<color value="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1"/>
 	</gradient>
+
 </draw_ops>
 
 <draw_ops name="dialog_titlebar_fill_focused">
@@ -158,15 +188,28 @@
 			<color value="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1"/>
 		<color value="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1"/>
 	</gradient>
+
+</draw_ops>
+
+
+<draw_ops name="titlebar_fill_attached_focused"> <!-- gradient for attached and modal dialogs titlebar-->
+	<gradient type="vertical" x="0" y="0" width="width" height="title_height">
+		<color value="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1"/>
+		<color value="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1"/>
+	</gradient>
 </draw_ops>
 
 <draw_ops name="hilight">
-	<line color="C_highlight_color" x1="0" y1="0" x2="width-1" y2="0" />
+	<line color="shade/gtk:custom(metacity_color,gtk:bg[NORMAL])/1" x1="0" y1="0" x2="width-1" y2="0" />
 </draw_ops>
 
 <draw_ops name="titlebar_focused">
 	<include name="titlebar_fill_focused" />
 	<include name="hilight" />
+</draw_ops>
+
+<draw_ops name="titlebar_attached_focused"> <!-- titlebar for attached and modal dialogs -->
+	<include name="titlebar_fill_attached_focused" />
 </draw_ops>
 
 <draw_ops name="rounded_titlebar_focused">
@@ -206,27 +249,35 @@
 		y="(height - object_height) / 2"
 		width="object_width"
 		height="object_height"
-        colorize="C_text_color" />
+        />
 </draw_ops>
 
 <draw_ops name="close_hover">
-	<include name="close_focused" />
-	<include name="hover" />
+	<image filename="close_prelight.svg"
+		x="(width - object_width) / 2"
+		y="(height - object_height) / 2"
+		width="object_width"
+		height="object_height"
+        />
 </draw_ops>
 
 <draw_ops name="close_focused_pressed">
-	<include name="close_focused" />
-	<include name="pressed" />
+	<image filename="close_pressed.svg"
+		x="(width - object_width) / 2"
+		y="(height - object_height) / 2"
+		width="object_width"
+		height="object_height"
+        />
 </draw_ops>
 
 <draw_ops name="close_unfocused">
-    <image filename="close.svg"
+    <image filename="close_unfocused.svg"
 	    x="(width - object_width) / 2"
 	    y="(height - object_height) / 2"
 	    width="object_width"
 	    height="object_height"
-        alpha="0.6"
-        colorize="C_text_color" />
+        alpha="0.3"
+        />
 </draw_ops>
 
 <draw_ops name="close_unfocused_hover">
@@ -247,27 +298,38 @@
 		y="(height - object_height) / 2"
 		width="object_width"
 		height="object_height"
-        colorize="C_text_color" />
+
+       />
 </draw_ops>
 
 <draw_ops name="maximize_hover">
-	<include name="maximize_focused" />
-	<include name="hover" />
-</draw_ops>
-
-<draw_ops name="maximize_focused_pressed">
-	<include name="maximize_focused" />
-	<include name="pressed" />
-</draw_ops>
-
-<draw_ops name="maximize_unfocused">
-        <image filename="maximize.svg"
+		<image filename="maximize_prelight.svg"
 		x="(width - object_width) / 2"
 		y="(height - object_height) / 2"
 		width="object_width"
 		height="object_height"
-        alpha="0.6"
-        colorize="C_text_color" />
+
+       />
+</draw_ops>
+
+<draw_ops name="maximize_focused_pressed">
+		<image filename="maximize_pressed.svg"
+		x="(width - object_width) / 2"
+		y="(height - object_height) / 2"
+		width="object_width"
+		height="object_height"
+
+       />
+</draw_ops>
+
+<draw_ops name="maximize_unfocused">
+        <image filename="maximize_unfocused.svg"
+		x="(width - object_width) / 2"
+		y="(height - object_height) / 2"
+		width="object_width"
+		height="object_height"
+        alpha="0.3"
+         />
 </draw_ops>
 
 <draw_ops name="maximize_unfocused_hover">
@@ -283,32 +345,40 @@
 <!-- :: UNMAXIMIZE ICON :: -->
 
 <draw_ops name="unmaximize_focused">
-	<image filename="unmaximize.svg"
+	<image filename="maximize.svg"
 		x="(width - object_width) / 2"
 		y="(height - object_height) / 2"
 		width="object_width"
 		height="object_height"
-        colorize="C_text_color" />
+    />
 </draw_ops>
 
 <draw_ops name="unmaximize_hover">
-	<include name="unmaximize_focused" />
-	<include name="hover" />
-</draw_ops>
-
-<draw_ops name="unmaximize_focused_pressed">
-	<include name="unmaximize_focused" />
-	<include name="pressed" />
-</draw_ops>
-
-<draw_ops name="unmaximize_unfocused">
-        <image filename="unmaximize.svg"
+	<image filename="maximize_prelight.svg"
 		x="(width - object_width) / 2"
 		y="(height - object_height) / 2"
 		width="object_width"
 		height="object_height"
-        alpha="0.6"
-        colorize="C_text_color" />
+    />
+</draw_ops>
+
+<draw_ops name="unmaximize_focused_pressed">
+	<image filename="maximize_pressed.svg"
+		x="(width - object_width) / 2"
+		y="(height - object_height) / 2"
+		width="object_width"
+		height="object_height"
+    />
+</draw_ops>
+
+<draw_ops name="unmaximize_unfocused">
+        <image filename="maximize_unfocused.svg"
+		x="(width - object_width) / 2"
+		y="(height - object_height) / 2"
+		width="object_width"
+		height="object_height"
+        alpha="0.3"
+        />
 </draw_ops>
 
 <draw_ops name="unmaximize_unfocused_hover">
@@ -324,32 +394,40 @@
 <!-- :: MINIMIZE ICON :: -->
 
 <draw_ops name="minimize_focused">
-	<image filename="minimize.svg"
+	<image filename="min.svg"
 		x="(width - object_width) / 2"
 		y="(height - object_height) / 2"
 		width="object_width"
 		height="object_height"
-        colorize="C_text_color" />
+        />
 </draw_ops>
 
 <draw_ops name="minimize_hover">
-	<include name="minimize_focused" />
-	<include name="hover" />
-</draw_ops>
-
-<draw_ops name="minimize_focused_pressed">
-	<include name="minimize_focused" />
-	<include name="pressed" />
-</draw_ops>
-
-<draw_ops name="minimize_unfocused">
-	<image filename="minimize.svg"
+	<image filename="min_prelight.svg"
 		x="(width - object_width) / 2"
 		y="(height - object_height) / 2"
 		width="object_width"
 		height="object_height"
-        alpha="0.6"
-        colorize="C_text_color" />
+        />
+</draw_ops>
+
+<draw_ops name="minimize_focused_pressed">
+	<image filename="min_pressed.svg"
+		x="(width - object_width) / 2"
+		y="(height - object_height) / 2"
+		width="object_width"
+		height="object_height"
+        />
+</draw_ops>
+
+<draw_ops name="minimize_unfocused">
+	<image filename="min_unfocused.svg"
+		x="(width - object_width) / 2"
+		y="(height - object_height) / 2"
+		width="object_width"
+		height="object_height"
+        alpha="0.3"
+         />
 </draw_ops>
 
 <draw_ops name="minimize_unfocused_hover">
@@ -811,6 +889,57 @@
 	<button function="unstick" state="pressed"><draw_ops></draw_ops></button>
 </frame_style>
 
+<frame_style name="attached_focused" geometry="attached">
+	<piece position="entire_background" draw_ops="dialog_background_focused" />
+	<piece position="titlebar" draw_ops="titlebar_attached_focused" />
+	<piece position="overlay" draw_ops="border_attached_focused" />
+	<button function="close" state="normal"><draw_ops></draw_ops></button>
+	<button function="close" state="pressed"><draw_ops></draw_ops></button>
+	<button function="maximize" state="normal"><draw_ops></draw_ops></button>
+	<button function="maximize" state="pressed"><draw_ops></draw_ops></button>
+	<button function="minimize" state="normal"><draw_ops></draw_ops></button>
+	<button function="minimize" state="pressed"><draw_ops></draw_ops></button>
+	<button function="menu" state="normal"><draw_ops></draw_ops></button>
+	<button function="menu" state="pressed"><draw_ops></draw_ops></button>
+	<button function="shade" state="normal"><draw_ops></draw_ops></button>
+	<button function="shade" state="pressed"><draw_ops></draw_ops></button>
+	<button function="unshade" state="normal"><draw_ops></draw_ops></button>
+	<button function="unshade" state="pressed"><draw_ops></draw_ops></button>
+	<button function="above" state="normal"><draw_ops></draw_ops></button>
+	<button function="above" state="pressed"><draw_ops></draw_ops></button>
+	<button function="unabove" state="normal"><draw_ops></draw_ops></button>
+	<button function="unabove" state="pressed"><draw_ops></draw_ops></button>
+	<button function="stick" state="normal"><draw_ops></draw_ops></button>
+	<button function="stick" state="pressed"><draw_ops></draw_ops></button>
+	<button function="unstick" state="normal"><draw_ops></draw_ops></button>
+	<button function="unstick" state="pressed"><draw_ops></draw_ops></button>
+</frame_style>
+
+<frame_style name="attached_unfocused" geometry="attached">
+	<piece position="entire_background" draw_ops="entire_background_unfocused" />
+	<piece position="overlay" draw_ops="border_unfocused" />
+	<button function="close" state="normal"><draw_ops></draw_ops></button>
+	<button function="close" state="pressed"><draw_ops></draw_ops></button>
+	<button function="maximize" state="normal"><draw_ops></draw_ops></button>
+	<button function="maximize" state="pressed"><draw_ops></draw_ops></button>
+	<button function="minimize" state="normal"><draw_ops></draw_ops></button>
+	<button function="minimize" state="pressed"><draw_ops></draw_ops></button>
+	<button function="menu" state="normal"><draw_ops></draw_ops></button>
+	<button function="menu" state="pressed"><draw_ops></draw_ops></button>
+	<button function="shade" state="normal"><draw_ops></draw_ops></button>
+	<button function="shade" state="pressed"><draw_ops></draw_ops></button>
+	<button function="unshade" state="normal"><draw_ops></draw_ops></button>
+	<button function="unshade" state="pressed"><draw_ops></draw_ops></button>
+	<button function="above" state="normal"><draw_ops></draw_ops></button>
+	<button function="above" state="pressed"><draw_ops></draw_ops></button>
+	<button function="unabove" state="normal"><draw_ops></draw_ops></button>
+	<button function="unabove" state="pressed"><draw_ops></draw_ops></button>
+	<button function="stick" state="normal"><draw_ops></draw_ops></button>
+	<button function="stick" state="pressed"><draw_ops></draw_ops></button>
+	<button function="unstick" state="normal"><draw_ops></draw_ops></button>
+	<button function="unstick" state="pressed"><draw_ops></draw_ops></button>
+</frame_style>
+
 <!-- placeholder for unimplementated styles-->
 <frame_style name="blank" geometry="normal">
 	<button function="close" state="normal"><draw_ops></draw_ops></button>
@@ -892,6 +1021,18 @@
 	<frame focus="no" state="maximized_and_shaded" style="blank"/>
 </frame_style_set>
 
+<frame_style_set name="attached_style_set">
+	<frame focus="yes" state="normal" resize="both" style="attached_focused"/>
+	<frame focus="no" state="normal" resize="both" style="attached_focused"/>
+	<frame focus="yes" state="maximized" style="blank"/>
+	<frame focus="no" state="maximized" style="blank"/>
+	<frame focus="yes" state="shaded" style="blank"/>
+	<frame focus="no" state="shaded" style="blank"/>
+	<frame focus="yes" state="maximized_and_shaded" style="blank"/>
+	<frame focus="no" state="maximized_and_shaded" style="blank"/>
+</frame_style_set>
+
+
 <!-- windows -->
 
 <window type="normal" style_set="normal_style_set"/>
@@ -900,6 +1041,6 @@
 <window type="menu" style_set="utility_style_set"/>
 <window type="utility" style_set="utility_style_set"/>
 <window type="border" style_set="border_style_set"/>
-<window version=">= 3.2" type="attached" style_set="dialog_style_set"/>
+<window version=">= 3.2" type="attached" style_set="attached_style_set"/>
 
 </metacity_theme>
