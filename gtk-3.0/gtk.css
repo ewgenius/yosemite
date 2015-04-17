@@ -80,3 +80,4 @@
 @define-color insensitive_fg_color #a7aba7;
 
 @import url("gtk-widgets.css");
+@import url("window-control.css");
