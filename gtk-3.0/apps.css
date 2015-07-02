@@ -209,7 +209,7 @@ NoiseLibraryWindow.window-frame {
 }
 
 .composited-indicator > GtkWidget > GtkWidget:first-child {
-    padding: 0 2px;
+    padding: 0 0px;
 }
 
 .panel-app-button > GtkWidget > GtkWidget:first-child {
