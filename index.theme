@@ -1,14 +1,14 @@
 [Desktop Entry]
 Type=X-GNOME-Metatheme
-Name=elementary-yo
-Comment=elementary desktop default theme
+Name=yosemite
+Comment=elementary desktop yosemite theme
 Encoding=UTF-8
 
-Name[en_US]=elementary-yo
+Name[en_US]=yosemite
 
 [X-GNOME-Metatheme]
-GtkTheme=elementary-yo
-MetacityTheme=elementary-yo
+GtkTheme=yosemite
+MetacityTheme=yosemite
 IconTheme=elementary
 CursorTheme=DMZ-Black
 ButtonLayout=close,minimize:maximize
