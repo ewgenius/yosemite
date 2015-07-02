@@ -131,13 +131,13 @@ ConversationListView {
     -GtkWidget-focus-line-width: 1px;
     -GtkTreeView-grid-line-width: 0;
 }
- 
+
 ConversationListView.view.cell {
     border-style: solid;
     border-width: 0 0 1px 0;
     border-color: alpha (#000, 0.2);
 }
- 
+
 ConversationListView.view.cell:selected:focus {
     border-style: solid;
     border-width: 0 0 1px 0;
@@ -163,10 +163,9 @@ NoiseLibraryWindow.window-frame {
 
 .panel {
     background-color: transparent;
-    color: #fff;
-    font-weight: bold;
-    text-shadow: 0 1px 2px alpha (#000, 0.6);
-    icon-shadow: 0 1px 2px alpha (#000, 0.6);
+    color: alpha (#000, 0.90);
+    font-weight: normal;
+    background-color: alpha (#fff, 0.20);
 }
 
 .panel-shadow {
@@ -200,7 +199,13 @@ NoiseLibraryWindow.window-frame {
 
 .composited-indicator {
     background-color: transparent;
-    color: #fff;
+    color: alpha (#000, 0.90);
+}
+
+.composited-indicator > GtkWidget > GtkContainer {
+}
+
+.composited-indicator > GtkWidget > GtkContainer > GtkImage {
 }
 
 .composited-indicator > GtkWidget > GtkWidget:first-child {
@@ -231,13 +236,13 @@ SlingshotWidgetsSearchView GtkButton.flat:focus {
 /***************
  * Switchboard *
  **************/
- 
+
 SwitchboardCategoryView GtkIconView.view.cell:selected,
 SwitchboardCategoryView GtkIconView.view.cell:selected:focus {
     border: 2px solid @selected_bg_color;
     border-radius: 6px;
     color: @text_color;
-} 
+}
 
 /************
  * Terminal *
