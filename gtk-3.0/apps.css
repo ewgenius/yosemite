@@ -162,10 +162,10 @@ NoiseLibraryWindow.window-frame {
  ********/
 
 .panel {
-    background-color: transparent;
     color: alpha (#000, 0.90);
-    font-weight: normal;
-    background-color: alpha (#fff, 0.20);
+    font-weight: 400;
+    font-size: 10px;
+    background-color: alpha (#fff, 0.50);
 }
 
 .panel-shadow {
